@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.tictactoe.Field,com.tictactoe.Sign,java.util.List" %>
+<%@ page import="com.tictactoe.Sign" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="<c:url value="/static/jquery-3.6.0.min.js"/>"></script>
 
 <!DOCTYPE html>
 <html>
 <head>
     <link href="static/main.css" rel="stylesheet">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
@@ -30,9 +32,28 @@
         <td onclick="window.location='/logic?click=8'">${data.get(8).getSign()}</td>
     </tr>
 </table>
+    <hr>
+    <c:if test = "${winner == Sign.CROSS}">
+        <p>Игрок победил. Отличная работа</p>
+        <button onclick="restart()">Сыграем ещё раз?</button>
+    </c:if>
+    <c:if test = "${winner == Sign.NOUGHT}">
+        <p>Победил компьютер. Отличная работа! Компьютера...</p>
+        <button onclick="restart()">Сыграем ещё раз?</button>
+    </c:if>
 
 <script>
-
+    function restart() {
+        $.ajax({
+            url: '/restart',
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            async: false,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
 </script>
 
 </body>
