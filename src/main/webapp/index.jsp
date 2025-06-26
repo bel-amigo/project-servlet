@@ -35,15 +35,16 @@
     <hr>
     <c:if test = "${winner == Sign.CROSS}">
         <p>Игрок победил. Отличная работа</p>
-        <button onclick="restart()">Сыграем ещё раз?</button>
+        <button class="restart-button" onclick="restart()">Сыграем ещё раз?</button>
     </c:if>
-    <c:if test = "${winner == Sign.NOUGHT}">
+<c:if test="${winner == Sign.NOUGHT}">
         <p>Победил компьютер. Отличная работа! Компьютера...</p>
-        <button onclick="restart()">Сыграем ещё раз?</button>
+        <button class="restart-button" onclick="restart()">Сыграем ещё раз?</button>
+
     </c:if>
-    <c:if test = "${draw == true}">
+<c:if test="${draw == true}">
         <p>Ничья!</p>
-        <button onclick="restart()">Сыграем ещё раз?</button>
+        <button class="restart-button" onclick="restart()">Сыграем ещё раз?</button>
     </c:if>
 
 
